@@ -3,8 +3,7 @@ import '@rildev/minimal-css/style.css';
 import Header from './components/header/header';
 import Nav from './components/nav/nav';
 import LatestPostsList from './components/latest-posts-list/latest-posts-list';
-import Swiper from 'react-id-swiper';
-import 'swiper/swiper-bundle.min.css';
+import LatestVideosList from './components/latest-videos-list/latest-videos-list';
 import styled from 'styled-components';
 
 const AppWrapper = styled.div`
@@ -37,18 +36,6 @@ const AppWrapper = styled.div`
     }
   }
 
-  .swiper-container {
-    .thumbnail {
-      overflow: hidden;
-      text-align: center;
-
-      img {
-        width: 80%;
-        // height: 100%;
-        object-fit: cover;
-      }
-    }
-  }
 
   .gdpr-card {
     z-index: 3;
@@ -61,31 +48,7 @@ const AppWrapper = styled.div`
 `;
 
 function App() {
-  const [latestVideos, setLatestVideos] = useState();
 
-  const getLatestYouTubeVideos = async () => {
-    //get latest YouTube videos
-    try {
-      const response = await fetch(
-        `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLrqsSGPJTglOzYa5c1-iMDwY7FY-SKtBV&maxResults=10&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`,
-      );
-
-      if (response.ok) {
-        const results = await response.json();
-
-        const videos = results.items.map(result => ({
-          thumbnail: result.snippet.thumbnails.medium.url,
-          videoUrl: `https://www.youtube.com/watch?v=${result.snippet.resourceId.videoId}&list=${result.snippet.playlistId}&index=${result.snippet.position}`,
-        }));
-
-        // prettier-ignore
-        console.log('crlntn -- App.js videos',videos)
-        setLatestVideos(videos);
-      }
-    } catch (error) {
-      throw error;
-    }
-  };
 
   //parameter: flag -> bool, show / hide the .GDPR-card
   const setGDPRCardVisibility = flag => {
@@ -103,39 +66,11 @@ function App() {
     }
   };
 
-  const swiperParams = {
-    slidesPerView: 5,
-    spaceBetween: 50,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    breakpoints: {
-      1024: {
-        slidesPerView: 4,
-        spaceBetween: 40,
-      },
-      768: {
-        slidesPerView: 3,
-        spaceBetween: 30,
-      },
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-      },
-      320: {
-        slidesPerView: 1,
-        spaceBetween: 10,
-      },
-    },
-  };
 
   useEffect(() => {
     //GDPR card
     setGDPRCardVisibility(true);
 
-    //get the latest YouTube videos
-    getLatestYouTubeVideos();
 
     // eslint-disable-next-line
   }, []);
@@ -148,24 +83,7 @@ function App() {
         <h2>Latest Posts</h2>
         <LatestPostsList />
         <h2>Latest Videos</h2>
-        <div className={`full-width`}>
-          {latestVideos && (
-            <Swiper {...swiperParams}>
-              {latestVideos.map((video, index) => (
-                <a
-                  key={index}
-                  href={video.videoUrl}
-                  target={`_blank`}
-                  rel={`noopener noreferrer`}
-                >
-                  <div className={`thumbnail`}>
-                    <img src={video.thumbnail} alt={``} />
-                  </div>
-                </a>
-              ))}
-            </Swiper>
-          )}
-        </div>
+        <LatestVideosList />
       </main>
       <footer>
         By{' '}
