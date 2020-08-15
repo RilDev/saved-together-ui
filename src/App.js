@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import '@rildev/minimal-css/style.css';
 import Swiper from 'react-id-swiper';
 import 'swiper/swiper-bundle.min.css';
@@ -121,6 +121,12 @@ const AppWrapper = styled.div`
 `;
 
 function App() {
+  const [latestPosts, setLatestPosts] = useState();
+
+  const createMarkup = value => ({
+    __html: value,
+  });
+
   //parameter: flag -> bool, show / hide the .GDPR-card
   const setGDPRCardVisibility = flag => {
     const GDPRCard = document.querySelector('.gdpr-card');
@@ -164,8 +170,24 @@ function App() {
     },
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     setGDPRCardVisibility(true);
+    const response = await fetch(
+      'http://vccw.test/wp-json/wp/v2/posts?per_page=5&_embed',
+    );
+    const results = await response.json();
+    // prettier-ignore
+    console.log('crlntn -- App.js result',results)
+    const posts = results.map(post => ({
+      title: post.title.rendered,
+      excerpt: post.excerpt.rendered,
+      image:
+        post['_embedded']['wp:featuredmedia'][0].media_details.sizes
+          .medium_large.source_url,
+    }));
+    // prettier-ignore
+    console.log('crlntn -- App.js posts',posts)
+    setLatestPosts(posts);
     // eslint-disable-next-line
   }, []);
 
@@ -204,30 +226,19 @@ function App() {
       </nav>
       <main>
         <h2>Latest Posts</h2>
-        <article className={`blog-post`}>
-          <div className={`title`}>This is the post's title</div>
-          <div className={`thumbnail`}>
-            <img src={`https://via.placeholder.com/400`} alt={``} />
-          </div>
-          <div className={`excerpt`}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In velit
-            libero, fringilla eget scelerisque a, mollis elementum eros. Sed
-            vulputate mi eu tincidunt rutrum. Pellentesque pulvinar, metus non
-            tincidunt dictum, arcu ante venenatis eros, quis imperdiet elit urna
-          </div>
-        </article>
-        <article className={`blog-post`}>
-          <div className={`title`}>This is the post's title</div>
-          <div className={`thumbnail`}>
-            <img src={`https://via.placeholder.com/400`} alt={``} />
-          </div>
-          <div className={`excerpt`}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In velit
-            libero, fringilla eget scelerisque a, mollis elementum eros. Sed
-            vulputate mi eu tincidunt rutrum. Pellentesque pulvinar, metus non
-            tincidunt dictum, arcu ante venenatis eros, quis imperdiet elit urna
-          </div>
-        </article>
+        {latestPosts &&
+          latestPosts.map(post => (
+            <article className={`blog-post`}>
+              <div className={`title`}>{post.title}</div>
+              <div className={`thumbnail`}>
+                <img src={post.image} alt={``} />
+              </div>
+              <div
+                className={`excerpt`}
+                dangerouslySetInnerHTML={createMarkup(post.excerpt)}
+              />
+            </article>
+          ))}
         <h2>Latest Videos</h2>
         <div className={`full-width`}>
           <Swiper {...swiperParams}>
