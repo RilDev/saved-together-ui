@@ -9,3 +9,6 @@
 - [ ] create blog page
 - [ ] create single post page
 - [ ] create archive sidebar
+- [x] pull 5 latest articles from WordPress API
+- [ ] pull 10 latest YouTube videos
+- [ ] add loader component
