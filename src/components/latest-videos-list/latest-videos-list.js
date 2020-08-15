@@ -29,24 +29,25 @@ const LatestVideosList = props => {
   }, []);
 
   const swiperParams = {
-    slidesPerView: 5,
-    spaceBetween: 50,
+    lazy: true,
+    slidesPerView: 4,
+    spaceBetween: 40,
     pagination: {
       el: '.swiper-pagination',
       clickable: true,
     },
     breakpoints: {
       1024: {
-        slidesPerView: 4,
-        spaceBetween: 40,
-      },
-      768: {
         slidesPerView: 3,
         spaceBetween: 30,
       },
-      640: {
+      768: {
         slidesPerView: 2,
         spaceBetween: 20,
+      },
+      640: {
+        slidesPerView: 1,
+        spaceBetween: 10,
       },
       320: {
         slidesPerView: 1,
