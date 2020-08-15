@@ -4,10 +4,10 @@
 
 ## Todo
 
-- [ ] create home page
-- [ ] create about page
-- [ ] create blog page
-- [ ] create single post page
+- [x] create home view
+- [ ] create about view
+- [ ] create blog view
+- [ ] create single post view
 - [ ] create archive sidebar
 - [x] pull 5 latest articles from WordPress API
 - [x] pull 10 latest YouTube videos
