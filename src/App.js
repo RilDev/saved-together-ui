@@ -4,6 +4,7 @@ import Header from './components/header/header';
 import Nav from './components/nav/nav';
 import LatestPostsList from './components/latest-posts-list/latest-posts-list';
 import LatestVideosList from './components/latest-videos-list/latest-videos-list';
+import Footer from './components/footer/footer';
 import styled from 'styled-components';
 
 const AppWrapper = styled.div`
@@ -57,16 +58,7 @@ function App() {
         <h2>Latest Videos</h2>
         <LatestVideosList />
       </main>
-      <footer>
-        By{' '}
-        <a
-          href="https://rildev.website"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          RilDev
-        </a>
-      </footer>
+      <Footer />
       <div className="gdpr-card">
         <h2>GDPR</h2>
         <p>We don't use any cookies</p>
