@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '@rildev/minimal-css/style.css';
 import Header from './components/header/header';
 import Nav from './components/nav/nav';
+import LatestPostsList from './components/latest-posts-list/latest-posts-list';
 import Swiper from 'react-id-swiper';
 import 'swiper/swiper-bundle.min.css';
 import styled from 'styled-components';
@@ -62,12 +63,7 @@ const AppWrapper = styled.div`
 `;
 
 function App() {
-  const [latestPosts, setLatestPosts] = useState();
   const [latestVideos, setLatestVideos] = useState();
-
-  const createMarkup = value => ({
-    __html: value,
-  });
 
   const getLatestYouTubeVideos = async () => {
     //get latest YouTube videos
@@ -93,29 +89,6 @@ function App() {
     }
   };
 
-  const getLatestWordPressPosts = async () => {
-    try {
-      //get latest WordPress Posts
-      const response = await fetch(
-        'http://vccw.test/wp-json/wp/v2/posts?per_page=5&_embed',
-      );
-      if (response.ok) {
-        const results = await response.json();
-
-        const posts = results.map(post => ({
-          title: post.title.rendered,
-          excerpt: post.excerpt.rendered,
-          image:
-            post['_embedded']['wp:featuredmedia'][0].media_details.sizes
-              .medium_large.source_url,
-        }));
-
-        setLatestPosts(posts);
-      }
-    } catch (error) {
-      throw error;
-    }
-  };
 
   //parameter: flag -> bool, show / hide the .GDPR-card
   const setGDPRCardVisibility = flag => {
@@ -164,8 +137,6 @@ function App() {
     //GDPR card
     setGDPRCardVisibility(true);
 
-    //get the latest WordPress posts
-    getLatestWordPressPosts();
 
     //get the latest YouTube videos
     getLatestYouTubeVideos();
@@ -179,19 +150,7 @@ function App() {
       <Nav />
       <main>
         <h2>Latest Posts</h2>
-        {latestPosts &&
-          latestPosts.map((post, index) => (
-            <article key={index} className={`blog-post`}>
-              <div className={`title`}>{post.title}</div>
-              <div className={`thumbnail`}>
-                <img src={post.image} alt={``} />
-              </div>
-              <div
-                className={`excerpt`}
-                dangerouslySetInnerHTML={createMarkup(post.excerpt)}
-              />
-            </article>
-          ))}
+        <LatestPostsList />
         <h2>Latest Videos</h2>
         <div className={`full-width`}>
           {latestVideos && (
