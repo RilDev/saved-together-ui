@@ -8,8 +8,6 @@ import 'swiper/swiper-bundle.min.css';
 import styled from 'styled-components';
 
 const AppWrapper = styled.div`
-
-
   h2 {
     margin: 1rem 0;
     padding: 1rem 0;
@@ -89,7 +87,6 @@ function App() {
     }
   };
 
-
   //parameter: flag -> bool, show / hide the .GDPR-card
   const setGDPRCardVisibility = flag => {
     const GDPRCard = document.querySelector('.gdpr-card');
@@ -137,7 +134,6 @@ function App() {
     //GDPR card
     setGDPRCardVisibility(true);
 
-
     //get the latest YouTube videos
     getLatestYouTubeVideos();
 
@@ -156,7 +152,12 @@ function App() {
           {latestVideos && (
             <Swiper {...swiperParams}>
               {latestVideos.map((video, index) => (
-                <a key={index} href={video.videoUrl} target={`_blank`}>
+                <a
+                  key={index}
+                  href={video.videoUrl}
+                  target={`_blank`}
+                  rel={`noopener noreferrer`}
+                >
                   <div className={`thumbnail`}>
                     <img src={video.thumbnail} alt={``} />
                   </div>
@@ -168,7 +169,11 @@ function App() {
       </main>
       <footer>
         By{' '}
-        <a href="https://rildev.website" target="_blank">
+        <a
+          href="https://rildev.website"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           RilDev
         </a>
       </footer>
