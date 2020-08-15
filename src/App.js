@@ -5,6 +5,7 @@ import Nav from './components/nav/nav';
 import LatestPostsList from './components/latest-posts-list/latest-posts-list';
 import LatestVideosList from './components/latest-videos-list/latest-videos-list';
 import Footer from './components/footer/footer';
+import GDPRCard from './components/gdpr-card/gdpr-card';
 import styled from 'styled-components';
 
 const AppWrapper = styled.div`
@@ -13,40 +14,10 @@ const AppWrapper = styled.div`
     padding: 1rem 0;
     font-size: 2rem;
   }
-
-  .gdpr-card {
-    z-index: 3;
-
-    h2 {
-      font-size: 1.5rem;
-      padding-bottom: 0;
-    }
-  }
 `;
 
 function App() {
-  //parameter: flag -> bool, show / hide the .GDPR-card
-  const setGDPRCardVisibility = flag => {
-    const GDPRCard = document.querySelector('.gdpr-card');
 
-    //if no .GDPR-card, do nothing
-    if (!GDPRCard) {
-      return;
-    }
-
-    if (flag) {
-      GDPRCard.classList.add('visible');
-    } else {
-      GDPRCard.classList.remove('visible');
-    }
-  };
-
-  useEffect(() => {
-    //GDPR card
-    setGDPRCardVisibility(true);
-
-    // eslint-disable-next-line
-  }, []);
 
   return (
     <AppWrapper>
@@ -59,17 +30,7 @@ function App() {
         <LatestVideosList />
       </main>
       <Footer />
-      <div className="gdpr-card">
-        <h2>GDPR</h2>
-        <p>We don't use any cookies</p>
-        <p>We don't store any of your information</p>
-        <button
-          className="white border-white bg-blue"
-          onClick={() => setGDPRCardVisibility(false)}
-        >
-          Got it!
-        </button>
-      </div>
+      <GDPRCard />
     </AppWrapper>
   );
 }
