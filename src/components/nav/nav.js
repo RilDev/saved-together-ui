@@ -2,7 +2,7 @@ import React from 'react';
 // import PropTypes from "prop-types";
 import styled from 'styled-components';
 
-const NavWrapper = styled.div`
+const NavWrapper = styled.nav`
   nav {
     z-index: 2;
   }
@@ -11,7 +11,6 @@ const NavWrapper = styled.div`
 const Nav = props => {
   return (
     <NavWrapper>
-      <nav>
         <ul>
           <li>
             <a href="/">Home</a>
@@ -26,7 +25,6 @@ const Nav = props => {
             <a href="/">YouTube</a>
           </li>
         </ul>
-      </nav>
     </NavWrapper>
   );
 };
