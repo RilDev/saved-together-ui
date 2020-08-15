@@ -67,7 +67,7 @@ function App() {
     //get latest YouTube videos
     try {
       const response = await fetch(
-        'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLrqsSGPJTglOzYa5c1-iMDwY7FY-SKtBV&maxResults=10&key=AIzaSyBz9-FwnmhvuIQJGlj5WhaHbiEX9F8kYMc',
+        `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLrqsSGPJTglOzYa5c1-iMDwY7FY-SKtBV&maxResults=10&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`,
       );
 
       if (response.ok) {
