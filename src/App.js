@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import '@rildev/minimal-css/style.css';
 import Header from './components/header/header';
+import Nav from './components/nav/nav';
 import Swiper from 'react-id-swiper';
 import 'swiper/swiper-bundle.min.css';
 import styled from 'styled-components';
 
 const AppWrapper = styled.div`
 
-  nav {
-    z-index: 2;
-  }
 
   h2 {
     margin: 1rem 0;
@@ -178,22 +176,7 @@ function App() {
   return (
     <AppWrapper>
       <Header />
-      <nav>
-        <ul>
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/">About</a>
-          </li>
-          <li>
-            <a href="/">Blog</a>
-          </li>
-          <li>
-            <a href="/">YouTube</a>
-          </li>
-        </ul>
-      </nav>
+      <Nav />
       <main>
         <h2>Latest Posts</h2>
         {latestPosts &&
