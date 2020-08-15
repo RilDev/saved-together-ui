@@ -13,30 +13,6 @@ const AppWrapper = styled.div`
     font-size: 2rem;
   }
 
-  article {
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid #ddd;
-    .title {
-      font-weight: bold;
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-    }
-    .thumbnail {
-      overflow: hidden;
-      width: 100%;
-      height: 200px;
-      margin-bottom: 2rem;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-  }
-
-
   .gdpr-card {
     z-index: 3;
 
@@ -48,8 +24,6 @@ const AppWrapper = styled.div`
 `;
 
 function App() {
-
-
   //parameter: flag -> bool, show / hide the .GDPR-card
   const setGDPRCardVisibility = flag => {
     const GDPRCard = document.querySelector('.gdpr-card');
@@ -66,11 +40,9 @@ function App() {
     }
   };
 
-
   useEffect(() => {
     //GDPR card
     setGDPRCardVisibility(true);
-
 
     // eslint-disable-next-line
   }, []);
