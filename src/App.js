@@ -122,10 +122,59 @@ const AppWrapper = styled.div`
 
 function App() {
   const [latestPosts, setLatestPosts] = useState();
+  const [latestVideos, setLatestVideos] = useState();
 
   const createMarkup = value => ({
     __html: value,
   });
+
+  const getLatestYouTubeVideos = async () => {
+    //get latest YouTube videos
+    try {
+      const response = await fetch(
+        'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLrqsSGPJTglOzYa5c1-iMDwY7FY-SKtBV&maxResults=10&key=AIzaSyBz9-FwnmhvuIQJGlj5WhaHbiEX9F8kYMc',
+      );
+
+      if (response.ok) {
+        const results = await response.json();
+
+        const videos = results.items.map(result => ({
+          thumbnail: result.snippet.thumbnails.medium.url,
+          videoUrl: `https://www.youtube.com/watch?v=${result.snippet.resourceId.videoId}&list=${result.snippet.playlistId}&index=${result.snippet.position}`,
+        }));
+
+        // prettier-ignore
+        console.log('crlntn -- App.js videos',videos)
+        setLatestVideos(videos);
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const getLatestWordPressPosts = async () => {
+    try {
+      //get latest WordPress Posts
+      const response = await fetch(
+        'http://vccw.test/wp-json/wp/v2/posts?per_page=5&_embed',
+      );
+      if (response.ok) {
+        const results = await response.json();
+
+        const posts = results.map(post => ({
+          title: post.title.rendered,
+          excerpt: post.excerpt.rendered,
+          image:
+            post['_embedded']['wp:featuredmedia'][0].media_details.sizes
+              .medium_large.source_url,
+        }));
+
+        setLatestPosts(posts);
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
 
   //parameter: flag -> bool, show / hide the .GDPR-card
   const setGDPRCardVisibility = flag => {
@@ -170,24 +219,16 @@ function App() {
     },
   };
 
-  useEffect(async () => {
+  useEffect(() => {
+    //GDPR card
     setGDPRCardVisibility(true);
-    const response = await fetch(
-      'http://vccw.test/wp-json/wp/v2/posts?per_page=5&_embed',
-    );
-    const results = await response.json();
-    // prettier-ignore
-    console.log('crlntn -- App.js result',results)
-    const posts = results.map(post => ({
-      title: post.title.rendered,
-      excerpt: post.excerpt.rendered,
-      image:
-        post['_embedded']['wp:featuredmedia'][0].media_details.sizes
-          .medium_large.source_url,
-    }));
-    // prettier-ignore
-    console.log('crlntn -- App.js posts',posts)
-    setLatestPosts(posts);
+
+    //get the latest WordPress posts
+    getLatestWordPressPosts();
+
+    //get the latest YouTube videos
+    getLatestYouTubeVideos();
+
     // eslint-disable-next-line
   }, []);
 
@@ -227,8 +268,8 @@ function App() {
       <main>
         <h2>Latest Posts</h2>
         {latestPosts &&
-          latestPosts.map(post => (
-            <article className={`blog-post`}>
+          latestPosts.map((post, index) => (
+            <article key={index} className={`blog-post`}>
               <div className={`title`}>{post.title}</div>
               <div className={`thumbnail`}>
                 <img src={post.image} alt={``} />
@@ -241,58 +282,17 @@ function App() {
           ))}
         <h2>Latest Videos</h2>
         <div className={`full-width`}>
-          <Swiper {...swiperParams}>
-            <div>
-              <div className={`thumbnail`}>
-                <img src={`https://via.placeholder.com/400`} alt={``} />
-              </div>
-            </div>
-            <div>
-              <div className={`thumbnail`}>
-                <img src={`https://via.placeholder.com/400`} alt={``} />
-              </div>
-            </div>
-            <div>
-              <div className={`thumbnail`}>
-                <img src={`https://via.placeholder.com/400`} alt={``} />
-              </div>
-            </div>
-            <div>
-              <div className={`thumbnail`}>
-                <img src={`https://via.placeholder.com/400`} alt={``} />
-              </div>
-            </div>
-            <div>
-              <div className={`thumbnail`}>
-                <img src={`https://via.placeholder.com/400`} alt={``} />
-              </div>
-            </div>
-            <div>
-              <div className={`thumbnail`}>
-                <img src={`https://via.placeholder.com/400`} alt={``} />
-              </div>
-            </div>
-            <div>
-              <div className={`thumbnail`}>
-                <img src={`https://via.placeholder.com/400`} alt={``} />
-              </div>
-            </div>
-            <div>
-              <div className={`thumbnail`}>
-                <img src={`https://via.placeholder.com/400`} alt={``} />
-              </div>
-            </div>
-            <div>
-              <div className={`thumbnail`}>
-                <img src={`https://via.placeholder.com/400`} alt={``} />
-              </div>
-            </div>
-            <div>
-              <div className={`thumbnail`}>
-                <img src={`https://via.placeholder.com/400`} alt={``} />
-              </div>
-            </div>
-          </Swiper>
+          {latestVideos && (
+            <Swiper {...swiperParams}>
+              {latestVideos.map((video, index) => (
+                <a key={index} href={video.videoUrl} target={`_blank`}>
+                  <div className={`thumbnail`}>
+                    <img src={video.thumbnail} alt={``} />
+                  </div>
+                </a>
+              ))}
+            </Swiper>
+          )}
         </div>
       </main>
       <footer>
