@@ -12,3 +12,4 @@
 - [x] pull 5 latest articles from WordPress API
 - [x] pull 10 latest YouTube videos
 - [ ] add loader component
+- [ ] add global context
