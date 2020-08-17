@@ -11,12 +11,15 @@ const PostCardWrapper = styled.div`
     font-weight: bold;
     font-size: 1.4rem;
     margin-bottom: 1rem;
+    text-decoration: none;
+    color: #333;
   }
   .thumbnail {
     overflow: hidden;
     width: 100%;
     height: 200px;
     margin-bottom: 2rem;
+    display: block;
 
     img {
       width: 100%;
@@ -34,15 +37,15 @@ const PostCardWrapper = styled.div`
 const PostCard = ({ post }) => {
   return (
     <PostCardWrapper>
-      <div className={`title`}>{post.title}</div>
-      <div className={`thumbnail`}>
+      <Link className={`title`} to={`/post/${post.slug}`}>{post.title}</Link>
+      <Link className={`thumbnail`} to={`/post/${post.slug}`}>
         <img src={post.image} alt={``} />
-      </div>
+      </Link>
       <div
         className={`excerpt`}
         dangerouslySetInnerHTML={{ __html: post.excerpt }}
       />
-      <Link to={`/`} className={`read-more`}>
+      <Link to={`/post/${post.slug}`} className={`read-more`}>
         Read more...
       </Link>
     </PostCardWrapper>
