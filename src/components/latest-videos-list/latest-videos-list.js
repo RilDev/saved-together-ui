@@ -71,8 +71,6 @@ const LatestVideosList = props => {
           videoUrl: `https://www.youtube.com/watch?v=${result.snippet.resourceId.videoId}&list=${result.snippet.playlistId}&index=${result.snippet.position}`,
         }));
 
-        // prettier-ignore
-        console.log('crlntn -- App.js videos',videos)
         setLatestVideos(videos);
       }
     } catch (error) {
