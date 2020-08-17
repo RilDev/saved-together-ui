@@ -15,7 +15,7 @@ _Official website of the YouTube channel Saved Together_
 - [x] add global context
 - [ ] dispatch content fetch from API to context to prevent new fetches when navigating back to the same route twice
 - [x] add react-router
-- [ ] update favicon
+- [x] update favicon
 - [ ] boost SEO
 - [ ] split main js and style of all components
 - [x] fix the scroll position when navigating from one page to the other
