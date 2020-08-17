@@ -5,9 +5,9 @@
 ## Todo
 
 - [x] create home view
-- [ ] create about view
-- [ ] create blog view
-- [ ] create single post view
+- [x] create about view
+- [x] create blog view
+- [x] create single post view
 - [ ] create archive sidebar
 - [x] pull 5 latest articles from WordPress API
 - [x] pull 10 latest YouTube videos
