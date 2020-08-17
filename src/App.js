@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { ContextProvider } from './context/context-provider';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ScrollToTop from './hooks/scroll-to-top';
 import '@rildev/stylized/style.css';
@@ -12,23 +13,25 @@ const AppWrapper = styled.div``;
 
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <Switch>
-        <Route path="/about">
-          <AboutView />
-        </Route>
-        <Route path="/blog">
-          <BlogView />
-        </Route>
-        <Route path="/post/:slug">
-          <PostView />
-        </Route>
-        <Route path="/">
-          <HomeView />
-        </Route>
-      </Switch>
-    </Router>
+    <ContextProvider>
+      <Router>
+        <ScrollToTop />
+        <Switch>
+          <Route path="/about">
+            <AboutView />
+          </Route>
+          <Route path="/blog">
+            <BlogView />
+          </Route>
+          <Route path="/post/:slug">
+            <PostView />
+          </Route>
+          <Route path="/">
+            <HomeView />
+          </Route>
+        </Switch>
+      </Router>
+    </ContextProvider>
   );
 }
 
