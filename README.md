@@ -13,7 +13,7 @@
 - [x] pull 10 latest YouTube videos
 - [ ] add loader component
 - [ ] add global context
-- [ ] add react-router
+- [x] add react-router
 - [ ] update favicon
 - [ ] boost SEO
 - [ ] split main js and style of all components
