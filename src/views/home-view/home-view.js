@@ -1,7 +1,7 @@
 import React from 'react';
 // import PropTypes from "prop-types";
 import Layout from '../../components/layout/layout';
-import LatestPostsList from '../../components/latest-posts-list/latest-posts-list';
+import PostsList from '../../components/posts-list/posts-list';
 import LatestVideosList from '../../components/latest-videos-list/latest-videos-list';
 import styled from 'styled-components';
 
@@ -12,7 +12,7 @@ const HomeView = props => {
     <HomeViewWrapper>
       <Layout>
         <h2>Latest Posts</h2>
-        <LatestPostsList />
+        <PostsList limit={5}/>
         <h2>Latest Videos</h2>
         <LatestVideosList />
       </Layout>
