@@ -40,7 +40,7 @@ const Nav = props => {
           <li className={`${path === '/blog' ? 'active' : ''}`}>
             <Link to="/blog">Blog</Link>
           </li>
-          <li className={`${path === '/youtube' ? 'active' : ''}`}>
+          <li>
             <a href="/" target="_blank">
               YouTube
             </a>
