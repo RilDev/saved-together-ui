@@ -7,6 +7,7 @@ import styled from 'styled-components';
 const PostViewWrapper = styled.div`
   .image {
     overflow: hidden;
+    max-height: 30rem;
 
     img {
       width: 100%;
@@ -37,7 +38,7 @@ const PostView = props => {
           content: result[0].content.rendered,
           image:
             result[0]['_embedded']['wp:featuredmedia'][0].media_details.sizes
-              .medium_large.source_url,
+              ["1536x1536"].source_url,
         };
         setPost(formatted);
       }
@@ -57,7 +58,7 @@ const PostView = props => {
         {post && (
           <>
             <h2>{post.title}</h2>
-            <div className={`image`}>
+            <div className={`image full-width`}>
               <img src={post.image} alt={``} />
             </div>
             <div dangerouslySetInnerHTML={{ __html: post.content }} />
