@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '@rildev/minimal-css/style.css';
+import '@rildev/stylize/style.css';
 import HomeView from './views/home-view/home-view'
 import styled from 'styled-components';
 
