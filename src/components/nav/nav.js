@@ -34,13 +34,15 @@ const Nav = props => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link href="/about">About</Link>
+            <Link to="/about">About</Link>
           </li>
           <li>
-            <Link href="/blog">Blog</Link>
+            <Link to="/blog">Blog</Link>
           </li>
           <li>
-            <a href="/">YouTube</a>
+            <a href="/" target="_blank">
+              YouTube
+            </a>
           </li>
           {/*this last item is necessary to adjust the scroll-nav*/}
           <li>sbla</li>
