@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { StateContext, DispatchContext } from '../../context/context-provider';
 // import PropTypes from "prop-types";
 import styled from 'styled-components';
 
@@ -15,21 +16,20 @@ const GDPRCardWrapper = styled.div`
 
 const GDPRCard = props => {
   const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-    // eslint-disable-next-line
-  }, []);
+  const state = useContext(StateContext);
+  const dispatch = useContext(DispatchContext);
 
   return (
     <GDPRCardWrapper>
-      <div className={`gdpr-card ${isVisible ? 'visible' : ''}`}>
+      <div className={`gdpr-card ${state.isGDPRCardVisible ? 'visible' : ''}`}>
         <h2>GDPR</h2>
         <p>We don't use any cookies</p>
         <p>We don't store any of your information</p>
         <button
           className="white border-white bg-blue"
-          onClick={() => setIsVisible(false)}
+          onClick={() =>
+            dispatch({ type: 'toggle-isGDPRCardVisible', payload: false })
+          }
         >
           Got it!
         </button>
