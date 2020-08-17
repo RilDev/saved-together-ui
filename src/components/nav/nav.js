@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 // import PropTypes from "prop-types";
 import ScrollBooster from 'scrollbooster';
 import styled from 'styled-components';
@@ -13,6 +13,7 @@ const NavWrapper = styled.nav`
 const Nav = props => {
   const refViewport = useRef();
   const refContainer = useRef();
+  const path = useLocation().pathname;
 
   useEffect(() => {
     //initialize the ScrollBooster object
@@ -30,16 +31,16 @@ const Nav = props => {
     <NavWrapper>
       <div ref={refViewport} className={`scroll-booster`}>
         <ul ref={refContainer}>
-          <li>
+          <li className={`${path === '/' ? 'active' : ''}`}>
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li className={`${path === '/about' ? 'active' : ''}`}>
             <Link to="/about">About</Link>
           </li>
-          <li>
+          <li className={`${path === '/blog' ? 'active' : ''}`}>
             <Link to="/blog">Blog</Link>
           </li>
-          <li>
+          <li className={`${path === '/youtube' ? 'active' : ''}`}>
             <a href="/" target="_blank">
               YouTube
             </a>
