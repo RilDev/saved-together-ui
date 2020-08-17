@@ -41,7 +41,7 @@ const Nav = props => {
             <Link to="/blog">Blog</Link>
           </li>
           <li>
-            <a href="/" target="_blank">
+            <a href="https://www.youtube.com/channel/UCcMwrWOscFaqptk5l43WkOQ" target="_blank">
               YouTube
             </a>
           </li>
