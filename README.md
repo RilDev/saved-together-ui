@@ -17,3 +17,4 @@
 - [ ] update favicon
 - [ ] boost SEO
 - [ ] split main js and style of all components
+- [ ] fix the scroll position when navigating from one page to the other
