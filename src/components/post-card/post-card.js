@@ -13,6 +13,7 @@ const PostCardWrapper = styled.div`
     margin-bottom: 1rem;
     text-decoration: none;
     color: #333;
+    display: block;
   }
   .thumbnail {
     overflow: hidden;
