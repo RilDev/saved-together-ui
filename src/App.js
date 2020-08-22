@@ -20,6 +20,9 @@ function App() {
           <Route path="/about">
             <PageView slug={`about`} />
           </Route>
+          <Route path="/privacy-policy">
+            <PageView slug={`privacy-policy`} />
+          </Route>
           <Route path="/blog">
             <BlogView />
           </Route>

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const AboutViewWrapper = styled.div``;
 
-const AboutView = props => {
+const AboutView = ({slug}) => {
   const [pageTitle, setPageTitle] = useState();
   const [pageContent, setPageContent] = useState();
 
@@ -20,7 +20,7 @@ const AboutView = props => {
 
   const getPageContent = async pageSlug => {
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/pages?slug=about`,
+      `${process.env.REACT_APP_API_URL}/pages?slug=${slug}`,
     );
 
     if (response.ok) {
