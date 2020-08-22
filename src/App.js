@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ScrollToTop from './hooks/scroll-to-top';
 import '@rildev/stylized/style.css';
 import HomeView from './views/home-view/home-view';
-import AboutView from './views/about-view/about-view';
+import PageView from './views/page-view/page-view';
 import BlogView from './views/blog-view/blog-view';
 import PostView from './views/post-view/post-view';
 import styled from 'styled-components';
@@ -18,7 +18,7 @@ function App() {
         <ScrollToTop />
         <Switch>
           <Route path="/about">
-            <AboutView />
+            <PageView slug={`about`} />
           </Route>
           <Route path="/blog">
             <BlogView />
