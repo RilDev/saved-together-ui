@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { StateContext, DispatchContext } from '../../context/context-provider';
 // import PropTypes from "prop-types";
 import styled from 'styled-components';
@@ -33,6 +34,7 @@ const GDPRCard = props => {
         >
           Got it!
         </button>
+        <Link to="/privacy-policy">Privacy Policy</Link>
       </div>
     </GDPRCardWrapper>
   );
