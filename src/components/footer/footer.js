@@ -9,11 +9,11 @@ const Footer = props => {
     <FooterWrapper>
       By{' '}
       <a
-        href="https://rildev.website"
+        href="https://savedtogether.life"
         target="_blank"
         rel="noopener noreferrer"
       >
-        RilDev
+        Saved Together
       </a>
     </FooterWrapper>
   );
