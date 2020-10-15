@@ -18,7 +18,7 @@ const PostPageWrapper = styled.div`
 `;
 
 const PostPage = props => {
-  const { slug } = useParams();
+  const slug = useParams();
   const [post, setPost] = useState();
 
   const getPost = async slug => {
