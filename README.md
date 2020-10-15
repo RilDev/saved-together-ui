@@ -12,7 +12,8 @@ _Official website of the YouTube channel Saved Together_
 - [ ] improve the scrollToTop effect (remove the smooth sliding)
 - [ ] add animation slide-in gdpr-card
 - [ ] add infinite scroll on blog view
-- [ ] migrate project to GatsbyJS
+- [x] migrate project to GatsbyJS
 - [ ] create component leveraging gatsby-image
 - [ ] fix all warnings
 - [ ] create specific-page that takes a slug for pages like about
+- [ ] add Privacy Policy that is GDPR compliant
