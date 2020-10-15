@@ -17,3 +17,4 @@ _Official website of the YouTube channel Saved Together_
 - [ ] fix all warnings
 - [ ] create specific-page that takes a slug for pages like about
 - [ ] add Privacy Policy that is GDPR compliant
+- [ ] add favicon
