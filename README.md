@@ -4,9 +4,10 @@ _Official website of the YouTube channel Saved Together_
 
 ## Todo
 
+- [x] add favicon
+- [ ] dispatch content fetch from API to context to prevent new fetches when navigating back to the same route twice
 - [ ] create archive sidebar
 - [ ] add loader component
-- [ ] dispatch content fetch from API to context to prevent new fetches when navigating back to the same route twice
 - [ ] boost SEO
 - [ ] split main js and style of all components
 - [ ] improve the scrollToTop effect (remove the smooth sliding)
@@ -17,4 +18,3 @@ _Official website of the YouTube channel Saved Together_
 - [ ] fix all warnings
 - [ ] create specific-page that takes a slug for pages like about
 - [ ] add Privacy Policy that is GDPR compliant
-- [ ] add favicon
